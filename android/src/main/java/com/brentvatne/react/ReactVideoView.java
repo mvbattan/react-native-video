@@ -391,7 +391,7 @@ public class ReactVideoView extends ScalableVideoView implements
             if (!mMediaPlayer.isPlaying()) {
                 start();
                 // Setting the rate unpauses, so we have to wait for an unpause
-                if (mRate != mActiveRate) { 
+                if (mRate != mActiveRate) {
                     setRateModifier(mRate);
                 }
 
@@ -614,7 +614,13 @@ public class ReactVideoView extends ScalableVideoView implements
             event.putDouble(EVENT_PROP_SEEK_TIME, msec / 1000.0);
             mEventEmitter.receiveEvent(getId(), Events.EVENT_SEEK.toString(), event);
 
-            super.seekTo(msec);
+            if(Build.VERSION.SDK_INT >= 26) {
+              mMediaPlayer.seekTo((long) msec, 3);
+            }
+            else {
+              super.seekTo(msec);
+            }
+
             if (isCompleted && mVideoDuration != 0 && msec < mVideoDuration) {
                 isCompleted = false;
             }
@@ -654,7 +660,7 @@ public class ReactVideoView extends ScalableVideoView implements
             setKeepScreenOn(false);
         }
     }
-        
+
     // This is not fully tested and does not work for all forms of timed metadata
     @TargetApi(23) // 6.0
     public class TimedMetaDataAvailableListener
