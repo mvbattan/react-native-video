@@ -662,7 +662,6 @@ public class ReactVideoView extends ScalableVideoView implements
     }
 
     // This is not fully tested and does not work for all forms of timed metadata
-    @TargetApi(23) // 6.0
     public class TimedMetaDataAvailableListener
             implements MediaPlayer.OnTimedMetaDataAvailableListener
     {
