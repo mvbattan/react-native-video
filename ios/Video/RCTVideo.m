@@ -766,10 +766,10 @@ static int const RCTVideoUnset = -1;
 - (void)setSeek:(NSDictionary *)info
 {
   NSNumber *seekTime = info[@"time"];
-  NSNumber *seekTolerance = @(100);
+  NSNumber *seekTolerance = info[@"tolerance"];
 
   int timeScale = 1000;
-  
+
   AVPlayerItem *item = _player.currentItem;
   if (item && item.status == AVPlayerItemStatusReadyToPlay) {
     // TODO check loadedTimeRanges
