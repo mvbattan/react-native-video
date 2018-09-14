@@ -26,7 +26,6 @@ import com.google.android.exoplayer2.ui.SubtitleView;
 
 import java.util.List;
 
-@TargetApi(16)
 public final class ExoPlayerView extends FrameLayout {
 
     private View surfaceView;
